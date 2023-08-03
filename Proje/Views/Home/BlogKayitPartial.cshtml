@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Proje.Models.Model.Blog>
+@foreach (var item in Model)
+{
+    <li>
+        <div class="sidebar-item recent-posts">
+            <div class="post-item clearfix">
+                <img src="@item.ResimURL" alt="@item.Baslik">
+                <h4><a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a></h4>
+                <p>
+                    @Html.Raw(item.Icerik.Substring(0, 150))
+                </p>
+            </div>
+        </div><!-- End sidebar recent posts-->
+    </li>
+}

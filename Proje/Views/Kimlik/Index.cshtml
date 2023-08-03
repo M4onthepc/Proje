@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Proje.Models.Model.Kimlik>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Yeni Ekle", "Create")
+</p>
+<table class="table datatable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogoURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unvan)
+        </th>
+        <th>
+            İşlemler
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Keywords)
+            </td>
+            <td>
+                @Html.Raw(item.Description) @*Site Açıklama" alanı içine girilen değer tabloda 
+                                                gösterildiğnde html kodları ile gözüktüğü için buraya
+                                                "Html.DescriptionFor" yerine "Raw" yazılıyor. Ardından
+                                                "modelItem" silinip sadece "item" getiriliyor. *@ 
+            </td>
+            <td>
+                <img class="img-responsive" src="@item.LogoURL" width="300" height="200" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unvan)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "Edit", new { id = item.KimlikId })
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,97 @@
+﻿
+@model Proje.Models.Model.Blog
+@{
+    ViewBag.Title = "BlogDetay";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-8 entries">
+                <article class="entry">
+
+                    <div class="entry-img">
+                        <img src="@Model.ResimURL" width="870" alt="@Model.Baslik" class="img-fluid">
+                    </div>
+                    <h2 class="entry-title">@Model.Baslik</h2>
+                    <div class="entry-meta">
+                        <ul>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">@Model.Kategori.KategoriAd</a></li>
+                        </ul>
+                    </div>
+                    <div class="entry-content">
+                        <p>
+                            @Html.Raw(Model.Icerik)
+                        </p>
+                    </div>
+                </article>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Yorum Yap</h3>
+                        <form>
+                            <input type="text" name="adsoyad" class="form-control" id="adsoyad" placeholder="Adınız" required>
+
+                            <input type="email" class="form-control" name="email" id="eposta" placeholder="Mail Adresiniz" required>
+
+                            <div class="form-group mt-3">
+                                <textarea class="form-control" typeof="text" id="icerik"  placeholder="Mesajınız" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark" id="gonder">Yorum Yap</button>
+                        </form>
+                    </div>
+                </div> <br />
+
+                <div class="row">
+                    <div>
+                        <h3>Blog Makale Yorumları</h3>
+                        @foreach (var item in Model.Yorums.OrderByDescending(x=>x.YorumId).Where(x=>x.Onay==true))
+                        {
+                            <p>@item.AdSoyad - @item.Eposta</p>
+                            <p>@item.Icerik</p>
+                            <hr />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+
+            <div class="sidebar">
+
+
+                <h3 class="sidebar-title">Kategoriler</h3>
+                @{
+                    Html.RenderAction("BlogKategoriPartial", "Home");
+                }
+
+                <h3 class="sidebar-title">Son Blog Kayıtları</h3>
+                @{
+                    Html.RenderAction("BlogKayitPartial", "Home");
+                }
+
+            </div><!-- End sidebar -->
+        </div><!-- End blog sidebar -->
+
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#gonder").click(function () {
+            var adisoyadi = $("#adsoyad").val();
+            var epostasi = $("#eposta").val();
+            var yorumunuz = $("#icerik").val();
+            $.ajax({
+                url: '/Home/YorumYap/',
+                data: { adsoyad: adisoyadi, eposta: epostasi, icerik: yorumunuz, blogid:@Model.BlogId},
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    alert("Yorumunuz eklendi, kontrol edildikten sonra yayınlanacaktır.");
+                }
+            });
+        });
+    })
+</script>

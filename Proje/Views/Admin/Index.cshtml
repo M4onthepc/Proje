@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Proje.Models.Model.Kategori>
+@{
+    ViewBag.Title = "Admin Ana  Sayfa";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+        <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
+
+                    <!-- Sales Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+                            <div class="card-body">
+                                <h5 class="card-title">@ViewBag.BlogSay <span>| Blog Yazısı</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card revenue-card">
+
+
+                            <div class="card-body">
+                                <h5 class="card-title">@ViewBag.KategoriSay <span>| Kategori Sayısı</span></h5>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">@ViewBag.HizmetSay <span>| Hizmet Sayısı</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">@ViewBag.YorumSay <span>| Yorum Sayısı</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+<!-- End #main -->

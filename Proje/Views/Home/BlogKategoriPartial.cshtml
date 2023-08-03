@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Proje.Models.Model.Kategori>
+<div class="sidebar-item categories">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a href="/Home/KategoriBlog/@item.KategoriId">@item.KategoriAd<span>(@item.Blogs.Count())</span></a></li>
+        }
+    </ul>
+</div> 

@@ -1,0 +1,47 @@
+﻿@model Proje.Models.Model.Hizmet
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Hizmet Düzenle</h2> 
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Browser Default</h5>
+
+        <!-- Browser Default Validation -->
+        <form class="row g-3" method="post" action="/Hizmet/Edit/@Model.HizmetId" enctype="multipart/form-data">
+            <div class="col-mb-3">
+                <label for="validationDefault01" class="form-label">Başlık</label>
+                <input type="text" class="form-control" id="Baslik" name="Baslik" required value="@Model.Baslik">
+            </div>
+            <div class="col-mb-3>
+                <label for="validationDefault01" class="form-label">Açıklama</label>
+                <textarea name="Aciklama" required class="ckeditor">@Model.Aciklama</textarea>
+            </div>
+            <div class="col-mb-3">
+                <label for="validationDefaultUsername" class="form-label">Önceki Resim</label>
+                <div class="input-group">
+                    <img src="@Model.ResimURL" width="150" height="150"/>
+                </div>
+            </div>
+            <div class="col-mb-3">
+                <label for="validationDefaultUsername" class="form-label">Resim</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" name="ResimURL"  accept=".jpg,.png,.jpeg">
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Kaydet</button>
+                <button class="btn btn-default" type="submit"><a href="/Hizmet/Index">İptal</a></button>
+            </div>
+        </form>
+        <!-- End Browser Default Validation -->
+
+    </div>
+</div>
+
+
